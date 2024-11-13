@@ -1,0 +1,25 @@
+class Task {
+  String id;
+  String name;
+  bool completed;
+  String priority;
+  DateTime? dueDate;
+
+  Task({
+    required this.id,
+    required this.name,
+    this.completed = false,
+    this.priority = 'Medium',
+    this.dueDate,
+  });
+
+  factory Task.fromFirestore(Map<String, dynamic> data, String id) {
+    return Task(
+      id: id,
+      name: data['name'],
+      completed: data['completed'],
+      priority: data['priority'],
+      dueDate: data['dueDate']?.toDate(),
+    );
+  }
+}
